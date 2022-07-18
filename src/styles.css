@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    font-family: 'Arial';
+}
+.text-center{
+    text-align: center;
+}
+.text-end{
+    text-align: end;
+}
+.icon-plus::after{
+    content: '+';
+    font-size: 18px;
+    font-weight: bold;
+}
+.icon-search{
+    padding-left: 25px;
+    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
+    background-size: 20px;
+}
+
+.form-input{
+    width: 170px;
+    height: 25px;
+    border: solid 1px #ccc;
+    border-radius: 3px;
+}
+

@@ -1,0 +1,74 @@
+<div>
+    <form action="">
+        <div class="row">
+            <h4>Listado de Pokemon</h4>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <input class="form-input icon-search" placeholder="Buscar" type="text">
+            </div>
+            <div class="col-md text-end">
+                <button class="btn" type="submit"><span class="icon-plus"></span> Nuevo</button>
+            </div>
+        </div>
+        <div class="row">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Ataque</th>
+                        <th>Defensa</th>
+                        <th colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dom</td>
+                        <td>6000</td>
+                    </tr>
+                    <tr class="active-row">
+                        <td>Melissa</td>
+                        <td>5150</td>
+                        <td>5150</td>
+                        <td>5150</td>
+                        <td>5150</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="grid">
+            <!-- <h4>Nuevo Pokemon</h4> -->
+            <form action="">
+                <div class="row">
+                    <div class="leftcol">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="form-input" name="name">
+                    </div>
+                    <div class="rightcol">
+                        <label for="attack">Ataque</label>
+                        0<input type="range" min="0" max="100" name="attack">100
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="leftcol">
+                        <label for="image">Imagen:</label>
+                        <input type="text" name="image" class="form-input">
+                    </div>
+                    <div class="rightcol">
+                        <label for="defense">Defensa</label>
+                        0<input type="range" min="0" max="100" name="defense">100
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row text-center">
+            <div class="col">
+                <button class="btn" type="submit">Guardar</button>
+            </div>
+            <div class="col">
+                <button class="btn">Cancelar</button>
+            </div>
+        </div>
+    </form>
+</div>
