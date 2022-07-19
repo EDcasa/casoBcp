@@ -7,6 +7,9 @@
 .text-end{
     text-align: end;
 }
+.text-initial{
+    text-align: initial;
+}
 .icon-plus::after{
     content: '+';
     font-size: 18px;
@@ -25,3 +28,18 @@
     border-radius: 3px;
 }
 
+label{
+    padding: 15px;
+}
+
+.icon-save::after{
+    content: '\1f4be';
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.icon-cancel::after{
+    content: 'x';
+    font-size: 18px;
+    font-weight: bold;
+}
