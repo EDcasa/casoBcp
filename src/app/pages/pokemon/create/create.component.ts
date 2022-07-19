@@ -3,6 +3,13 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ICPokemon } from 'src/app/interfaces/pokemon.interface';
 
 
+interface UserFormControls {
+  firstName: FormControl<string>;
+  lastName: FormControl<string>;
+  email: FormControl<string>;
+  age: FormControl<number | null>;
+}
+
 @Component({
   selector: 'create-pokemon',
   templateUrl: './create.component.html',
