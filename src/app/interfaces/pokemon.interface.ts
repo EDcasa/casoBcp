@@ -1,2 +1,5 @@
-export interface Pokemon {
+export interface IPokemon {
+    getPokemon():void;
+    savePokemon():void;
+    
 }

@@ -29,6 +29,11 @@ class Pokemon{
 
 }
 
-class PersistencePokemon{
-    // public savePokemon(pokemon:Pokemon)
+class PokemonService{
+    public savePokemon(pokemon:Pokemon){
+
+    }
+    public getPokemon(){
+        
+    }
 }
