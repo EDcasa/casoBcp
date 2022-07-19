@@ -4,6 +4,8 @@ import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
+import { HomeComponent } from './home/home.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -12,10 +14,12 @@ import { DeleteComponent } from './delete/delete.component';
     ListComponent,
     CreateComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
+    HomeComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule
   ]
 })
 export class PokemonModule { }

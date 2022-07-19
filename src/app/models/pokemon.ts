@@ -26,14 +26,4 @@ class Pokemon{
         this.type = type;
         this.id_author = id_author;
     }
-
-}
-
-class PokemonService{
-    public savePokemon(pokemon:Pokemon){
-
-    }
-    public getPokemon(){
-        
-    }
 }

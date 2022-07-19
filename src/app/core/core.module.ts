@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { PokemonModule } from '../pages/pokemon/pokemon.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    PokemonModule
+  ],
+  exports:[
+    PokemonModule
   ]
 })
 export class CoreModule { }

@@ -1,24 +1,25 @@
-<div class="container">
-    <table class="styled-table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Imagen</th>
-                <th>Ataque</th>
-                <th>Defensa</th>
-                <th colspan="2">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Dom</td>
-                <td>6000</td>
-            </tr>
-            <tr class="active-row">
-                <td>Melissa</td>
-                <td>5150</td>
-            </tr>
-            <!-- and so on... -->
-        </tbody>
-    </table>
+<div class="grid">
+    <div class="row">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Imagen</th>
+                    <th>Ataque</th>
+                    <th>Defensa</th>
+                    <th colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pokemon of pokemonsList">
+                    <td> {{ pokemon.name }} </td>
+                    <td> {{ pokemon.image }} </td>
+                    <td> {{ pokemon.attack }} </td>
+                    <td> {{ pokemon.defense }} </td>
+                    <td> Edit </td>
+                    <td (click)="deletePokemon(pokemon)"> <span>Delete</span> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

@@ -26,3 +26,6 @@
 .styled-table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
+table{
+    width: 100%;
+}

@@ -1,0 +1,16 @@
+<div class="grid">
+    <div class="row">
+        <h4>Listado de Pokemon</h4>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <input class="form-input icon-search" placeholder="Buscar" type="text">
+        </div>
+        <div class="col-md text-end">
+            <button class="btn" type="submit"><span class="icon-plus"></span> Nuevo</button>
+        </div>
+    </div>
+    
+</div>
+<pokemon-list [pokemonsList]="listPokemon" (deletePokemonE)="deletePokemon($event)"></pokemon-list>
+<create-pokemon></create-pokemon>

@@ -43,3 +43,43 @@ label{
     font-size: 18px;
     font-weight: bold;
 }
+
+
+.grid{
+    margin-left: 6%;
+    margin-top: 5%;
+    margin-right: 9%;
+}
+
+
+
+.rightcol {
+    width: calc(50% - 22px);
+    float: right;
+    padding: 10px;
+}
+.leftcol {
+  width: calc(50% - 22px);
+  display: inline-block;
+  padding: 10px;
+}
+
+.col-md{
+    float: left;
+    width: 50%;
+}
+.btn{
+    background: purple;
+    color: white;
+    text-decoration: none;
+    border: solid 1px purple;
+    width: 102px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.col{
+    display: inline-block;
+    width: 50%;
+    padding: 15px;
+}
