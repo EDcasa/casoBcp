@@ -4,9 +4,7 @@ import { CreateComponent } from './pages/pokemon/create/create.component';
 import { HomeComponent } from './pages/pokemon/home/home.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent},
-  { path: 'create', component: CreateComponent},
-  { path: 'create', component: CreateComponent},
+  { path: '', component: HomeComponent},
 ];
 
 @NgModule({

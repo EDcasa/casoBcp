@@ -11,6 +11,7 @@ export class CreateComponent implements OnInit {
   private pokemonCreate!: IPokemon;
   
   formCreatePokemon!: FormGroup;
+  initialValues!:IPokemon;
   @Input() stateFormPokemon!:boolean;
   @Output() resetForm = new EventEmitter();
 
@@ -36,6 +37,7 @@ export class CreateComponent implements OnInit {
       type:new FormControl("Fuego", Validators.required),
       idAuthor:new FormControl(1, Validators.required)
     })
+    this.initialValues = this.formCreatePokemon.value;
   }
 
 
@@ -50,16 +52,27 @@ export class CreateComponent implements OnInit {
     }
     if(!this.stateFormPokemon){
       this.submit.emit(this.formCreatePokemon.value);
+      this.resetFormPokemon();
     }else{
       this.submitEdit.emit(this.formCreatePokemon.value);
+      this.resetFormPokemon();
     }
   }
 
   ngOnChanges(){
     if(!this.stateFormPokemon){
-        //Here you can reset your form
-        this.formCreatePokemon?.reset();
+        this.resetFormPokemon();
     }
+ }
+
+ cancel(){
+  this.stateFormPokemon =false;
+  this.resetFormPokemon(); 
+ }
+
+ resetFormPokemon(){
+  this.formCreatePokemon?.reset(this.initialValues);
+  this.formCreatePokemon.setValue({type:"fuego",idAuthor:1, hp:100})
  }
 
 }
