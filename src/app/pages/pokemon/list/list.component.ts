@@ -10,6 +10,7 @@ import { IPokemon } from 'src/app/interfaces/pokemon.interface';
 export class ListComponent implements OnInit {
   @Input() pokemonsList!:IPokemon[];
   @Output() deletePokemonE = new EventEmitter<number>()
+  @Output() editPokemonE = new EventEmitter<IPokemon>()
 
   constructor() { }
 
@@ -18,6 +19,10 @@ export class ListComponent implements OnInit {
 
   deletePokemon(pokemon:IPokemon){
     this.deletePokemonE.emit(pokemon.id);
+  }
+
+  editPokemon(pokemon:IPokemon){
+    this.editPokemonE.emit(pokemon);
   }
 
 }

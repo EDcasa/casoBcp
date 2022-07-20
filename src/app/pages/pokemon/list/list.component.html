@@ -7,7 +7,7 @@
                     <th>Imagen</th>
                     <th>Ataque</th>
                     <th>Defensa</th>
-                    <th colspan="2">Acciones</th>
+                    <th colspan="2" class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -16,8 +16,8 @@
                     <td> {{ pokemon.image }} </td>
                     <td> {{ pokemon.attack }} </td>
                     <td> {{ pokemon.defense }} </td>
-                    <td> Edit </td>
-                    <td (click)="deletePokemon(pokemon)"> <span>Delete</span> </td>
+                    <td (click)="editPokemon(pokemon)"> <span class="icon-edit"></span> </td>
+                    <td (click)="deletePokemon(pokemon)"> <span class="icon-trash"></span> </td>
                 </tr>
             </tbody>
         </table>

@@ -4,13 +4,12 @@
     </div>
     <div class="row">
         <div class="col-md">
-            <input class="form-input icon-search" placeholder="Buscar" type="text">
+            <input class="form-input icon-search" (keyup)="filteredPokemonName($event)" placeholder="Buscar" type="text">
         </div>
         <div class="col-md text-end">
-            <button class="btn" type="submit"><span class="icon-plus"></span> Nuevo</button>
+            <button class="btn" type="submit" (click)="showCreatePokemon()"><span class="icon-plus"></span> Nuevo</button>
         </div>
     </div>
-    
 </div>
-<pokemon-list [pokemonsList]="listPokemon" (deletePokemonE)="deletePokemon($event)"></pokemon-list>
-<create-pokemon></create-pokemon>
+<pokemon-list [pokemonsList]="listPokemon" (deletePokemonE)="deletePokemon($event)" (editPokemonE)="loadInfoPokemon($event)"></pokemon-list>
+<create-pokemon (resetForm)="showCreatePokemon()"  (submit)="createPokemon($event)" (submitEdit)="editPokemon($event)" [pokemon]="editPokemonD" [stateFormPokemon]="isEditPokemon"></create-pokemon>

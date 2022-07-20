@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ICPokemon, IPokemon } from 'src/app/interfaces/pokemon.interface';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +18,7 @@ export class PokemonService {
    * @returns Observable<IPokemon[]>
    */
   getPokemon():Observable<IPokemon[]>{
-    return this.http.get<IPokemon[]>("https://bp-pokemons.herokuapp.com/?idAuthor=1");    
+    return this.http.get<IPokemon[]>("https://bp-pokemons.herokuapp.com/10?idAuthor=1");    
   }
 
   /**
@@ -41,8 +44,8 @@ export class PokemonService {
    * @param {ICPokemon} pokemon - ICPokemon - the pokemon object that we want to update
    * @returns Observable<IPokemon>
    */
-  updatePokemon(pokemon:ICPokemon):Observable<IPokemon>{
-    return this.http.put<IPokemon>("https://bp-pokemons.herokuapp.com/?idAuthor=1", pokemon);    
+  updatePokemon(id:number,pokemon:IPokemon):Observable<IPokemon>{
+    return this.http.put<IPokemon>(`https://bp-pokemons.herokuapp.com/${id}` , pokemon);    
   }
 
 
@@ -53,5 +56,23 @@ export class PokemonService {
    */
   deletePokemon(id:number):Observable<any>{
     return this.http.delete(`https://bp-pokemons.herokuapp.com/${id}`);    
+  }
+
+  searchPokemon(pokemons:IPokemon[], name:string){    
+      return of(pokemons).pipe(
+        map(p => {
+          if (!name || name === '') {
+            return p;
+          }
+          const filteredPokemons: IPokemon[] = [];
+          p.filter(function(pokemon:IPokemon) {
+            if (pokemon.name.toUpperCase().includes(name.toUpperCase())) {
+              filteredPokemons.push(pokemon);
+            }
+          });
+          
+          return filteredPokemons;
+        })
+      );
   }
 }
