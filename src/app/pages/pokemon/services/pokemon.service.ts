@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ICPokemon, IPokemon } from 'src/app/interfaces/pokemon.interface';
+import { ICPokemon, IPokemon, IResponseDeletePokemon } from 'src/app/interfaces/pokemon.interface';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ export class PokemonService {
    * @returns Observable<IPokemon[]>
    */
   getPokemon():Observable<IPokemon[]>{
-    return this.http.get<IPokemon[]>("https://bp-pokemons.herokuapp.com/10?idAuthor=1");    
+    return this.http.get<IPokemon[]>("https://bp-pokemons.herokuapp.com/?idAuthor=1");    
   }
 
   /**
@@ -54,8 +54,8 @@ export class PokemonService {
    * @param {number} id - number - the id of the pokemon to be deleted
    * @returns An observable of type IPokemon
    */
-  deletePokemon(id:number):Observable<any>{
-    return this.http.delete(`https://bp-pokemons.herokuapp.com/${id}`);    
+  deletePokemon(id:number):Observable<IResponseDeletePokemon>{
+    return this.http.delete<IResponseDeletePokemon>(`https://bp-pokemons.herokuapp.com/${id}`);    
   }
 
   searchPokemon(pokemons:IPokemon[], name:string){    

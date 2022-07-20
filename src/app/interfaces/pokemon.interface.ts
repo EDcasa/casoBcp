@@ -19,3 +19,9 @@ export interface ICPokemon{
     type:string,
     idAuthor:number
 }
+
+export interface IResponseDeletePokemon{
+    success: boolean,
+    type: string,
+    data: [],
+}
