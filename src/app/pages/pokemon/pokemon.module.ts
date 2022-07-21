@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list/list.component';
 import { CreateComponent } from './create/create.component';
 import { HomeComponent } from './home/home.component';
-import { SharedModule } from 'src/app/shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class PokemonModule { }
