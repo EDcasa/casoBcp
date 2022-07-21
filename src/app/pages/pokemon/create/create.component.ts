@@ -72,7 +72,7 @@ export class CreateComponent implements OnInit {
 
  resetFormPokemon(){
   this.formCreatePokemon?.reset(this.initialValues);
-  this.formCreatePokemon.setValue({type:"fuego",idAuthor:1, hp:100})
+  this.formCreatePokemon?.setValue({type:"fuego",idAuthor:1, hp:100})
  }
 
 }
