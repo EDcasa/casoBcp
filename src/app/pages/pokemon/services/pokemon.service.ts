@@ -11,6 +11,8 @@ import { map } from 'rxjs/operators';
 })
 export class PokemonService {
 
+  readonly baseURL = 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/pkm-msa-evaluation/pokemon/'
+
   constructor(private http:HttpClient) { }
 
   /**
@@ -18,7 +20,7 @@ export class PokemonService {
    * @returns Observable<IPokemon[]>
    */
   getPokemon():Observable<IPokemon[]>{
-    return this.http.get<IPokemon[]>("https://bp-pokemons.herokuapp.com/?idAuthor=1");    
+    return this.http.get<IPokemon[]>(`${this.baseURL}?idAuthor=1`);    
   }
 
   /**
@@ -27,7 +29,7 @@ export class PokemonService {
    * @returns Observable<IPokemon>
    */
   savePokemon(pokemon:ICPokemon):Observable<IPokemon>{
-      return this.http.post<IPokemon>("https://bp-pokemons.herokuapp.com/?idAuthor=1", pokemon);    
+      return this.http.post<IPokemon>(`${this.baseURL}?idAuthor=1`, pokemon);    
   }
 
   /**
@@ -36,7 +38,7 @@ export class PokemonService {
    * @returns An observable of type IPokemon
    */
   getPokemonId(id:number):Observable<IPokemon>{
-    return this.http.get<IPokemon>(`https://bp-pokemons.herokuapp.com/${id}`);    
+    return this.http.get<IPokemon>(`${this.baseURL} ${id}`);    
   }
 
   /**
@@ -55,7 +57,7 @@ export class PokemonService {
    * @returns An observable of type IPokemon
    */
   deletePokemon(id:number):Observable<IResponseDeletePokemon>{
-    return this.http.delete<IResponseDeletePokemon>(`https://bp-pokemons.herokuapp.com/${id}`);    
+    return this.http.delete<IResponseDeletePokemon>(`${this.baseURL} ${id}`);    
   }
 
   searchPokemon(pokemons:IPokemon[], name:string){    

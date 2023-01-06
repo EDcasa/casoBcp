@@ -25,4 +25,6 @@ export class ListComponent implements OnInit {
     this.editPokemonE.emit(pokemon);
   }
 
+
 }
+

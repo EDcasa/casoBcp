@@ -1,64 +1,75 @@
-*{
-    font-family: 'Arial';
+.container {
+    width: 90%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
-.text-center{
+
+* {
+    font-family: 'Arial';
+    width: 100%;
+}
+
+.text-center {
     text-align: center;
 }
-.text-end{
-    text-align: end;
-}
-.text-initial{
+
+.text-initial {
     text-align: initial;
 }
-.icon-plus::after{
+
+.icon-plus::after {
     content: '+';
     font-size: 18px;
     font-weight: bold;
 }
-.icon-search{
-    padding-left: 25px;
-    background: url("https://static.thenounproject.com/png/101791-200.png") no-repeat left;
-    background-size: 20px;
+
+.icon-search {
+    padding-left: 40px !important;
+    background: url(https://static.thenounproject.com/png/101791-200.png) no-repeat left;
+    background-size: 26px;
 }
 
-.form-input{
+.form-input {
     width: 170px;
     height: 25px;
     border: solid 1px #ccc;
-    border-radius: 3px;
+    border-radius: 10px;
+    padding: 10px;
 }
 
-label{
+label {
     padding: 15px;
 }
 
-.icon-save::after{
+.icon-save::after {
     content: '\1f4be';
     font-size: 18px;
     font-weight: bold;
 }
 
-.icon-cancel::after{
+.icon-cancel::after {
     content: 'x';
     font-size: 18px;
     font-weight: bold;
 }
 
-.icon-edit::after{
-    content: '\1F589';
+.icon-edit::after {
+    content: '\1F4DD';
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.icon-trash::after{
+.icon-trash::after {
     content: '\1F5D1';
     font-size: 18px;
     font-weight: bold;
     cursor: pointer;
 }
 
-.grid{
+.grid {
     margin-left: 6%;
     margin-top: 5%;
     margin-right: 9%;
@@ -71,17 +82,14 @@ label{
     float: right;
     padding: 10px;
 }
+
 .leftcol {
-  width: calc(50% - 22px);
-  display: inline-block;
-  padding: 10px;
+    width: calc(50% - 22px);
+    display: inline-block;
+    padding: 10px;
 }
 
-.col-md{
-    float: left;
-    width: 50%;
-}
-.btn{
+.btn {
     background: purple;
     color: white;
     text-decoration: none;
@@ -91,13 +99,67 @@ label{
     border-radius: 5px;
     cursor: pointer;
 }
-.col{
-    display: inline-block;
-    width: 50%;
-    padding: 15px;
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0px 10px 0px;
 }
-.text-danger{
+
+.col {
+    flex-basis: auto;
+    flex-grow: 1;
+    max-width: 100%;
+    /* padding: 0px 15px 0px 15px; */
+}
+
+.col-md {
+    flex: 1;
+    max-width: 100%;
+    /* padding: 0px 15px 0px 15px; */
+}
+
+.text-danger {
     display: block;
     margin-left: 90px;
     color: red;
+}
+
+.ma-15 {
+    margin: 15px;
+}
+
+.ma-l-50{
+    margin-left: 50px;
+}
+
+.text-end {
+    text-align: end;
+}
+
+.text-start{
+    text-align: start;
+}
+.field{
+    display: flex;
+    text-align: end;
+}
+
+.d-flex{
+    display: flex;
+}
+.lbl-points{
+    width: 10%;
+    text-align: center;
+}
+.lbl-txt{
+    width: 10%;
+}
+/*
+* Media Query
+*/
+@media (max-width: 610px) {
+    .col-md {
+        text-align: start;
+    }
 }

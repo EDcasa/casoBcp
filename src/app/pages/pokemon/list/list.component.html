@@ -1,25 +1,26 @@
-<div class="grid">
-    <div class="row">
-        <table class="styled-table">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Imagen</th>
-                    <th>Ataque</th>
-                    <th>Defensa</th>
-                    <th colspan="2" class="text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let pokemon of pokemonsList">
-                    <td> {{ pokemon.name }} </td>
-                    <td> {{ pokemon.image }} </td>
-                    <td> {{ pokemon.attack }} </td>
-                    <td> {{ pokemon.defense }} </td>
-                    <td (click)="editPokemon(pokemon)"> <span class="icon-edit"></span> </td>
-                    <td (click)="deletePokemon(pokemon)"> <span class="icon-trash"></span> </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div class="col">
+    <table>
+        <caption>Pokemon's</caption>
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Ataque</th>
+            <th scope="col">Defensa</th>
+            <th scope="col" colspan="2" class="text-center">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pokemon of pokemonsList">
+                <td data-label="Nombre"> {{ pokemon.name }} </td>
+                <td data-label="Imagen"> 
+                  <img class="img-anime" [src]="pokemon.image" alt="Img Pokemon">
+                </td>
+                <td data-label="Ataque"> {{ pokemon.attack }} </td>
+                <td data-label="Defensa"> {{ pokemon.defense }} </td>
+                <td data-label="Editar" (click)="editPokemon(pokemon)"> <span class="icon-edit"></span> </td>
+                <td data-label="Eliminar" (click)="deletePokemon(pokemon)"> <span class="icon-trash"></span> </td>
+            </tr>
+        </tbody>
+      </table>
 </div>
