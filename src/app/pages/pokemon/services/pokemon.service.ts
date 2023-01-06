@@ -47,7 +47,7 @@ export class PokemonService {
    * @returns Observable<IPokemon>
    */
   updatePokemon(id:number,pokemon:IPokemon):Observable<IPokemon>{
-    return this.http.put<IPokemon>(`https://bp-pokemons.herokuapp.com/${id}` , pokemon);    
+    return this.http.put<IPokemon>(`${this.baseURL}${id}` , pokemon);    
   }
 
 
