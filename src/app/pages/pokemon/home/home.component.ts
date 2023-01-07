@@ -42,31 +42,9 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  createPokemon(pokemon:ICPokemon){
-    this.pokemonService.savePokemon(pokemon).subscribe({
-      next:(pokemon:IPokemon)=>{
-        this.getPokemons();
-      },
-      error:(err:any)=>{
-        console.log(err);
-      }
-    })
-  }
-
   loadInfoPokemon(pokemon:IPokemon){  
     this.isEditPokemon = true;
     this.editPokemonD = pokemon;
-  }
-
-  editPokemon(pokemon:IPokemon){
-    this.pokemonService.updatePokemon(pokemon.id, pokemon).subscribe({
-      next:(pokemon:IPokemon)=>{
-        this.getPokemons();
-      },
-      error:(err:any)=>{
-        console.log(err);
-      }
-    })
   }
 
   showCreatePokemon(){

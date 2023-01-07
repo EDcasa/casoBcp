@@ -100,6 +100,14 @@ label {
     cursor: pointer;
 }
 
+.btn:disabled{
+    background: rgb(94, 62, 94);
+    color: #9f9999;   
+}
+.btn:disabled .icon-save{
+    opacity: 0.4;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -121,8 +129,9 @@ label {
 
 .text-danger {
     display: block;
-    margin-left: 90px;
     color: red;
+    font-size: 12px;
+    padding: 10px;
 }
 
 .ma-15 {
@@ -161,5 +170,8 @@ label {
 @media (max-width: 610px) {
     .col-md {
         text-align: start;
+    }
+    .text-danger{
+        margin-left: 80px;
     }
 }
