@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   //check if can emmit event to deletePokemon
   deletePokemon(eve: number) {
-    this.pokemonService.deletePokemon(eve).subscribe({
+    this.pokemonService.deletePokemonById(eve).subscribe({
       next: (res: any) => {
         this.getPokemons();
       },
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   }
 
   getPokemons() {
-    this.pokemonService.getPokemon().subscribe({
+    this.pokemonService.getPokemons().subscribe({
       next: (pokemons: IPokemon[]) => {
         this.listPokemon = pokemons;
         this.auxListPokemon = pokemons;

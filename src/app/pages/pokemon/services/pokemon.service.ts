@@ -13,14 +13,14 @@ export class PokemonService {
 
   readonly baseURL = 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/pkm-msa-evaluation/pokemon/'
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * The function getPokemon() returns an Observable of type IPokemon[]
    * @returns Observable<IPokemon[]>
    */
-  getPokemon():Observable<IPokemon[]>{
-    return this.http.get<IPokemon[]>(`${this.baseURL}?idAuthor=1`);    
+  getPokemons(): Observable<IPokemon[]> {
+    return this.http.get<IPokemon[]>(`${this.baseURL}?idAuthor=1`);
   }
 
   /**
@@ -28,8 +28,8 @@ export class PokemonService {
    * @param {ICPokemon} pokemon - ICPokemon - this is the pokemon object that we want to save.
    * @returns Observable<IPokemon>
    */
-  savePokemon(pokemon:ICPokemon):Observable<IPokemon>{
-      return this.http.post<IPokemon>(`${this.baseURL}?idAuthor=1`, pokemon);    
+  savePokemon(pokemon: ICPokemon): Observable<IPokemon> {
+    return this.http.post<IPokemon>(`${this.baseURL}?idAuthor=1`, pokemon);
   }
 
   /**
@@ -37,8 +37,8 @@ export class PokemonService {
    * @param {number} id - number - The id of the pokemon you want to get.
    * @returns An observable of type IPokemon
    */
-  getPokemonId(id:number):Observable<IPokemon>{
-    return this.http.get<IPokemon>(`${this.baseURL} ${id}`);    
+  getPokemonById(id: number): Observable<IPokemon> {
+    return this.http.get<IPokemon>(`${this.baseURL} ${id}`);
   }
 
   /**
@@ -46,8 +46,8 @@ export class PokemonService {
    * @param {ICPokemon} pokemon - ICPokemon - the pokemon object that we want to update
    * @returns Observable<IPokemon>
    */
-  updatePokemon(id:number,pokemon:IPokemon):Observable<IPokemon>{
-    return this.http.put<IPokemon>(`${this.baseURL}${id}` , pokemon);    
+  updatePokemonById(id: number, pokemon: IPokemon): Observable<IPokemon> {
+    return this.http.put<IPokemon>(`${this.baseURL}${id}`, pokemon);
   }
 
 
@@ -56,25 +56,25 @@ export class PokemonService {
    * @param {number} id - number - the id of the pokemon to be deleted
    * @returns An observable of type IPokemon
    */
-  deletePokemon(id:number):Observable<IResponseDeletePokemon>{
-    return this.http.delete<IResponseDeletePokemon>(`${this.baseURL} ${id}`);    
+  deletePokemonById(id: number): Observable<IResponseDeletePokemon> {
+    return this.http.delete<IResponseDeletePokemon>(`${this.baseURL} ${id}`);
   }
 
-  searchPokemon(pokemons:IPokemon[], name:string){    
-      return of(pokemons).pipe(
-        map(p => {
-          if (!name || name === '') {
-            return p;
+  searchPokemon(pokemons: IPokemon[], name: string) {
+    return of(pokemons).pipe(
+      map(p => {
+        if (!name || name === '') {
+          return p;
+        }
+        const filteredPokemons: IPokemon[] = [];
+        p.filter(function (pokemon: IPokemon) {
+          if (pokemon.name.toUpperCase().includes(name.toUpperCase())) {
+            filteredPokemons.push(pokemon);
           }
-          const filteredPokemons: IPokemon[] = [];
-          p.filter(function(pokemon:IPokemon) {
-            if (pokemon.name.toUpperCase().includes(name.toUpperCase())) {
-              filteredPokemons.push(pokemon);
-            }
-          });
-          
-          return filteredPokemons;
-        })
-      );
+        });
+
+        return filteredPokemons;
+      })
+    );
   }
 }

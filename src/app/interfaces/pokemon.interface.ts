@@ -4,9 +4,10 @@ export interface IPokemon {
     image:string,
     attack:number,
     defense:number,
-    hp:number,
+    hp:number|string,
     type:string,
-    id_author:number
+    id_author?:number,
+    idAuthor?:number,
 }
 
 
@@ -15,9 +16,10 @@ export interface ICPokemon{
     image:string,
     attack:number,
     defense:number,
-    hp:number,
+    hp:number|string,
     type:string,
-    idAuthor:number
+    idAuthor?:number,
+    id_author?:number
 }
 
 export interface IResponseDeletePokemon{

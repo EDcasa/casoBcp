@@ -14,7 +14,7 @@
             <tr *ngFor="let pokemon of pokemonsList">
                 <td data-label="Nombre"> {{ pokemon.name }} </td>
                 <td data-label="Imagen"> 
-                  <img class="img-anime" [src]="pokemon.image" alt="Img Pokemon">
+                  <img class="img-anime" [src]="pokemon.image" alt="Img Pokemon" (error)="imgDefault">
                 </td>
                 <td data-label="Ataque"> {{ pokemon.attack }} </td>
                 <td data-label="Defensa"> {{ pokemon.defense }} </td>

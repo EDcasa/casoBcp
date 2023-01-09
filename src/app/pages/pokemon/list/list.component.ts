@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
   @Output() deletePokemonE = new EventEmitter<number>()
   @Output() editPokemonE = new EventEmitter<IPokemon>()
 
+  imgDefault = "https://e7.pngegg.com/pngimages/902/338/png-clipart-poke-ball-open-wv-computer-wallpaper-desktop-wallpaper.png";
   constructor() { }
 
   ngOnInit(): void {

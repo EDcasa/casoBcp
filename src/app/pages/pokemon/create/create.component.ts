@@ -83,7 +83,7 @@ export class CreateComponent implements OnInit {
 
   
   editPokemon(pokemon:IPokemon){
-    this._pokemonService.updatePokemon(pokemon.id, pokemon).subscribe({
+    this._pokemonService.updatePokemonById(pokemon.id, pokemon).subscribe({
       next:(pokemon:IPokemon)=>{
         console.log("Pokemon updated");
         this.reloadTable.emit();

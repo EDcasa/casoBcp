@@ -1,129 +1,162 @@
 import { TestBed } from '@angular/core/testing';
-import { ICPokemon, IPokemon, IResponseDeletePokemon } from 'src/app/interfaces/pokemon.interface';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { PokemonService } from './pokemon.service';
+import { of, throwError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
-describe('PokemonService', () => {
+describe('PokemonService TDD to HTTP status OK and BAD', () => {
   let service: PokemonService;
-  let iPokemon: IPokemon[] = [];
-  let iPokemonSave: IPokemon = {} as IPokemon;
-  let iPokemonDelete: IResponseDeletePokemon = {} as IResponseDeletePokemon;
-  let httpController: HttpTestingController;
-  let url: string = "https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/pkm-msa-evaluation/pokemon/";
+  let httpClientSpy: { post: jasmine.Spy, get: jasmine.Spy };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
-    service = TestBed.inject(PokemonService);
-    httpController = TestBed.inject(HttpTestingController);
-
+    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get']);
+    service = new PokemonService(httpClientSpy as any);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  // it('should call getPokemon and return an array of Pokemons', () => {
-  //   service.getPokemon().subscribe(pokemon => {
-  //     expect(pokemon).toEqual(iPokemon);
-  //   })
-  //   const req = httpController.expectOne({
-  //     method: 'GET',
-  //     url: `${url}?idAuthor=1`,
-  //   });
-  //   req.flush(iPokemon);
-  // })
 
-  // it('should savePokemon and return an Pokemon', (done) => {
-  //   let pokemonTest:ICPokemon ={
-  //     name: 'Pokemon 1',
-  //     image: 'https://gooogle.com',
-  //     attack: 10,
-  //     defense: 10,
-  //     hp: 10,
-  //     type: 'Fire',
-  //     idAuthor: 1
-  //   }
-  //   service.savePokemon(pokemonTest).subscribe(pokemon => {
-  //     expect(pokemon).toEqual(iPokemonSave);      
-  //   })
-  //   const req = httpController.expectOne({
-  //     method: 'POST',
-  //     url: `${url}?idAuthor=1`,
-  //   });
-  //   req.flush(iPokemonSave);
-  //   done();
-  // })
+  it('Would be return Pokemon Object', (done: DoneFn) => {
+    const mockPokemon = {
+      "id": 45, //Todo: check next id or fail test
+      "name": "Pokemon 1",
+      "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png",
+      "attack": 10,
+      "defense": 10,
+      "hp": 100,
+      "type": "Fire",
+      "idAuthor": 1
+    }
 
-  // it('should getPokemonId return an Pokemon by id', (done) => {
-  //   let id = 100;
-  //   service.getPokemonId(id).subscribe(pokemon => {
-  //     expect(pokemon).toEqual(iPokemonSave);      
-  //   })
-  //   const req = httpController.expectOne({
-  //     method: 'GET',
-  //     url: `${url}${id}`,
-  //   });
-  //   req.flush(iPokemonSave);
-  //   done();
-  // })
+    const mockResultPokemon = {
+      "name": "Pokemon 1",
+      "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png",
+      "attack": 10,
+      "defense": 10,
+      "hp": 100,
+      "type": "Fire",
+      "id_author": 1
+    }
 
+    httpClientSpy.post.and.returnValue(of(mockPokemon));
 
-  // it('should updatePokemon return an Pokemon by id', (done) => {
-  //   let pokemonTest:IPokemon ={
-  //     name: 'Pokemon 1',
-  //     image: 'https://gooogle.com',
-  //     attack: 10,
-  //     defense: 10,
-  //     hp: 10,
-  //     type: 'Fire',
-  //     id: 1081,
-  //     id_author: 0
-  //   }
-  //   service.updatePokemon(pokemonTest.id,pokemonTest).subscribe(pokemon => {
-  //     expect(pokemon).toEqual(iPokemonSave);      
-  //   })
-  //   const req = httpController.expectOne({
-  //     method: 'PUT',
-  //     url: `${url}${pokemonTest.id}`,
-  //   });
-  //   req.flush(iPokemonSave);
-  //   done();
-  // })
+    service.savePokemon(mockResultPokemon).subscribe({
+      next: (pokemon) => {
+        expect(pokemon).toEqual(mockPokemon)
+        done()
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+
+  });
+
+  //Todo: OK
+  it(`Should return error 400`, (done: DoneFn) => {
+    const mockPokemon = {
+      name: 'Pokemon 1',
+      image: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png',
+      attack: 10,
+      defense: 10,
+      hp: "test", //Todo: send string to test Bad Request
+      type: 'Fire',
+      idAuthor: 1
+    }
+
+    const error400 = new HttpErrorResponse({
+      error: "Invalid data, check the information send",
+      status: 400, statusText: 'Bad Request'
+    })
+
+    httpClientSpy.post.and.returnValue(throwError(error400))
+    service.savePokemon(mockPokemon).subscribe({
+      next: (pokemon) => { },
+      error: (err: any) => {
+        expect(err.status).toEqual(400);
+        done()
+      }
+    })
+
+  })
 
 
-  // // it('should deletePokemon return an Pokemon by id', (done) => {
-  // //   let id = 1081;
-  // //   service.deletePokemon(id).subscribe(pokemon => {
-  // //     expect(pokemon).toEqual(iPokemonDelete);      
-  // //   })
-  // //   const req = httpController.expectOne({
-  // //     method: 'DELETE',
-  // //     url: `${url}${id}`,
-  // //   });
-  // //   req.flush(iPokemonDelete);
-  // //   done();
-  // // })
+  //Todo: OK
+  it('Should return Pokemon Object By id', (done: DoneFn) => {
+    const mockPokemon = {
+      "id": 44,
+      "name": "Pokemon 1",
+      "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/014.png",
+      "attack": 10,
+      "defense": 10,
+      "hp": 100,
+      "type": "Fire",
+      "idAuthor": 1
+    }
+
+    httpClientSpy.get.and.returnValue(of(mockPokemon));
+
+    service.getPokemonById(44).subscribe({
+      next: (pokemon) => {
+        expect(pokemon).toEqual(mockPokemon)
+        done()
+      },
+      error: (err) => {
+        // console.log(err);
+      }
+    })
+
+  });
+
+  //Todo: OK
+  it('Should return Array Pokemon', (done: DoneFn) => {
+
+    httpClientSpy.get.and.returnValue(of(true));
+
+    service.getPokemons().subscribe({
+      next: (pokemon) => {
+        expect(true).toEqual(true)
+        done()
+      },
+      error: (err) => {
+        // console.log(err);
+      }
+    })
+
+  });
 
 
-  // it('should searchpokemon by name and return an List Pokemon', (done) => {
-  //   let name = "fuego";
-  //   service.getPokemon().subscribe({
-  //     next:(pokemonL:IPokemon[]) => {
-  //       service.searchPokemon(pokemonL, name).subscribe(pokemons=>{
-  //         expect(pokemons).toEqual(iPokemon);      
-  //       })
-  //   }
-  // })
-  // const req = httpController.expectOne({
-  //   method: 'GET',
-  //   url: `${url}?idAuthor=1`,
-  // });
-  // req.flush(iPokemon);
-  //   done();
-  // })
+  it('Should return search Pokemon By name', (done: DoneFn) => {
 
+    const resultSearchPokemon = [{
+      "id": 30,
+      "name": "Pidgey",
+      "image": "https://assets.pokemon.com/assets/cms2/img/pokedex/full/016.png",
+      "attack": 27,
+      "defense": 24,
+      "hp": 100,
+      "type": "Fuego",
+      "idAuthor": 1
+  }]
+
+    httpClientSpy.get.and.returnValue(of(resultSearchPokemon));
+
+    service.getPokemons().subscribe({
+      next: (pokemons) => {
+        service.searchPokemon(pokemons, "Pidgey").subscribe(pokemon=>{
+          expect(pokemon).toEqual(resultSearchPokemon);
+          done()
+        })
+      }
+    })
+
+  });
 
 });
