@@ -14,6 +14,7 @@ export class CreateComponent implements OnInit {
   formCreatePokemon!: FormGroup;
   initialValues!: IPokemon;
   @Input() stateFormPokemon!: boolean;
+  
 
   @Input() set pokemon(pokemonD: IPokemon) {
     this.pokemonCreate = pokemonD;
@@ -23,6 +24,7 @@ export class CreateComponent implements OnInit {
   @Output() reloadTable = new EventEmitter<any>();
   @Output() submitEdit = new EventEmitter<IPokemon>();
 
+  unitTestResponse!:IPokemon;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -69,6 +71,7 @@ export class CreateComponent implements OnInit {
     
     this._pokemonService.savePokemon(pokemon).subscribe({
       next:(pokemon:IPokemon)=>{
+        this.unitTestResponse = pokemon;
         console.log("message saved");
         this.reloadTable.emit();
       },

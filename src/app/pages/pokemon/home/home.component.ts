@@ -15,10 +15,12 @@ export class HomeComponent implements OnInit {
   isEditPokemon:boolean=false;
   constructor(private pokemonService: PokemonService) { }
 
+  //todo: implement button to create new Pokemon emmit event
   ngOnInit(): void {
     this.getPokemons();
   }
 
+  //check if can emmit event to deletePokemon
   deletePokemon(eve: number) {
     this.pokemonService.deletePokemon(eve).subscribe({
       next: (res: any) => {
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  loadInfoPokemon(pokemon:IPokemon){  
+  loadInfoPokemon(pokemon:IPokemon){
     this.isEditPokemon = true;
     this.editPokemonD = pokemon;
   }
